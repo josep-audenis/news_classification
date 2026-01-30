@@ -96,7 +96,7 @@ for k in k_values:
     std_scores.append(np.std(scores))
 
 optimal_k = k_values[np.argmax(mean_scores)]
-print(f"\nValor òptim de K: {optimal_k} amb accuracy: {max(mean_scores):.4f}")
+print(f"\nValor optim de K: {optimal_k} amb accuracy: {max(mean_scores):.4f}")
 
 fig, ax = plt.subplots(figsize=(12, 6))
 ax.errorbar(k_values, mean_scores, yerr=std_scores, marker='o', capsize=5, capthick=2, linewidth=2, color='steelblue')
@@ -133,7 +133,7 @@ transformers = {
 }
 
 for scenario_name, X_scenario in scenarios_dig.items():
-    print(f"  Scenario: {scenario_name}")
+    print(f" - Scenario: {scenario_name}")
     knn = neighbors.KNeighborsClassifier()
     grid_search = model_selection.GridSearchCV(knn, param_grid, cv=10, scoring='accuracy', n_jobs=-1, verbose=0)
     grid_search.fit(X_scenario, Y_train_dig)
@@ -151,9 +151,9 @@ for scenario_name, X_scenario in scenarios_dig.items():
         best_dig_model = grid_search.best_estimator_
 
 print(f"MILLOR CONFIGURACIÓ KNN:")
-print(f"  Scenario: {best_dig_scenario}")
-print(f"  Parameters: {best_dig_params}")
-print(f"  CV Accuracy: {best_dig_score:.4f}")
+print(f" - Scenario: {best_dig_scenario}")
+print(f" - Parameters: {best_dig_params}")
+print(f" - CV Accuracy: {best_dig_score:.4f}")
 
 fig, ax = plt.subplots(figsize=(10, 5))
 scenario_names = [r['scenario'] for r in results_dig]
